@@ -19,6 +19,9 @@
 		AF38F8C92BFBAA4200111E06 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF38F8C82BFBAA4200111E06 /* User.swift */; };
 		AF38F8CC2BFBAC8C00111E06 /* SwiftfulUI in Frameworks */ = {isa = PBXBuildFile; productRef = AF38F8CB2BFBAC8C00111E06 /* SwiftfulUI */; };
 		AF38F8CF2BFBACAA00111E06 /* SwiftfulRouting in Frameworks */ = {isa = PBXBuildFile; productRef = AF38F8CE2BFBACAA00111E06 /* SwiftfulRouting */; };
+		AF3A152F2BFE4E66006B6C0B /* SpotifyCoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3A152E2BFE4E66006B6C0B /* SpotifyCoreView.swift */; };
+		AF3A15312BFE50C1006B6C0B /* SpotifyCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3A15302BFE50C1006B6C0B /* SpotifyCategoryCell.swift */; };
+		AF3A15342BFE52E3006B6C0B /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3A15332BFE52E3006B6C0B /* Category.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +35,9 @@
 		AF38F8C42BFBA80E00111E06 /* DatabaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseHelper.swift; sourceTree = "<group>"; };
 		AF38F8C62BFBAA2F00111E06 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		AF38F8C82BFBAA4200111E06 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		AF3A152E2BFE4E66006B6C0B /* SpotifyCoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyCoreView.swift; sourceTree = "<group>"; };
+		AF3A15302BFE50C1006B6C0B /* SpotifyCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyCategoryCell.swift; sourceTree = "<group>"; };
+		AF3A15332BFE52E3006B6C0B /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +75,7 @@
 			children = (
 				AF38F8AE2BFBA50300111E06 /* SwiftfulSwiftUIInPracticeApp.swift */,
 				AF38F8B02BFBA50300111E06 /* ContentView.swift */,
+				AF3A152B2BFE4E3A006B6C0B /* Spotify */,
 				AF38F8BF2BFBA56F00111E06 /* Shared */,
 				AF38F8B22BFBA50500111E06 /* Assets.xcassets */,
 				AF38F8B42BFBA50500111E06 /* Preview Content */,
@@ -94,6 +101,40 @@
 				AF38F8C82BFBAA4200111E06 /* User.swift */,
 			);
 			path = Shared;
+			sourceTree = "<group>";
+		};
+		AF3A152B2BFE4E3A006B6C0B /* Spotify */ = {
+			isa = PBXGroup;
+			children = (
+				AF3A15322BFE52D7006B6C0B /* Models */,
+				AF3A152D2BFE4E49006B6C0B /* Components */,
+				AF3A152C2BFE4E42006B6C0B /* Core */,
+			);
+			path = Spotify;
+			sourceTree = "<group>";
+		};
+		AF3A152C2BFE4E42006B6C0B /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				AF3A152E2BFE4E66006B6C0B /* SpotifyCoreView.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		AF3A152D2BFE4E49006B6C0B /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				AF3A15302BFE50C1006B6C0B /* SpotifyCategoryCell.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		AF3A15322BFE52D7006B6C0B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				AF3A15332BFE52E3006B6C0B /* Category.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -177,7 +218,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				AF38F8C12BFBA59500111E06 /* ImageLoaderView.swift in Sources */,
+				AF3A15342BFE52E3006B6C0B /* Category.swift in Sources */,
+				AF3A15312BFE50C1006B6C0B /* SpotifyCategoryCell.swift in Sources */,
 				AF38F8C52BFBA80E00111E06 /* DatabaseHelper.swift in Sources */,
+				AF3A152F2BFE4E66006B6C0B /* SpotifyCoreView.swift in Sources */,
 				AF38F8B12BFBA50300111E06 /* ContentView.swift in Sources */,
 				AF38F8AF2BFBA50300111E06 /* SwiftfulSwiftUIInPracticeApp.swift in Sources */,
 				AF38F8C32BFBA63F00111E06 /* Constants.swift in Sources */,
