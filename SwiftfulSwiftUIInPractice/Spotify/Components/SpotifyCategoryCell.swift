@@ -14,7 +14,8 @@ struct SpotifyCategoryCell: View {
     
     var body: some View {
         Text(title)
-            .font(.subheadline)
+            .font(.footnote)
+            .fontWeight(.medium)
             .padding(.vertical, 8)
             .padding(.horizontal, 16)
             .background(isSelected ? .spotifyGreen : .spotifyDarkGray)
@@ -27,7 +28,7 @@ struct SpotifyCategoryCell: View {
     ZStack {
         Color.black.ignoresSafeArea()
         VStack(spacing: 40) {
-            SpotifyCategoryCell(title: "All", isSelected: true)
+            SpotifyCategoryCell(title: "All", isSelected: false)
             SpotifyCategoryCell(title: "Title goes here", isSelected: true)
         }
     }

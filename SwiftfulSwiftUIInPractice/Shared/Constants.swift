@@ -8,5 +8,5 @@
 import Foundation
 
 enum Constants {
-    static let randomImageUrl = "https://picsum.photos/600/600"
+    static let randomImageUrl = "https://picsum.photos/200/300"
 }
