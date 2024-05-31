@@ -6,12 +6,13 @@
 //
 
 import SwiftUI
-import SDWebImageSwiftUI
+import SwiftfulUI
 
 struct SpotifyCoreView: View {
     @State private var currentUser: User? = nil
     @State private var selectedCategory: Category = .all
     @State private var products: [Product] = []
+    @State private var productRows: [ProductRow] = []
     
     private let gridColumns: [GridItem] = [
         GridItem(.flexible(minimum: 100)), GridItem(.flexible(minimum: 100))
@@ -22,24 +23,14 @@ struct SpotifyCoreView: View {
             Color.spotifyBlack.ignoresSafeArea()
             VStack(spacing: 0) {
                 header
-                    .padding(.vertical, 8)
-                
                 ScrollView(.vertical) {
                     VStack(spacing: 24) {
                         recentsSection
-                            .padding(.top, 8)
-                        
                         if let product = products.first {
                             newReleaseSection(product: product)
                         }
                     }
-                    
-                    ForEach(1...10, id: \.self) { count in
-                        Rectangle()
-                            .fill(Color.blue)
-                            .frame(width: 200, height: 100)
-                    }
-                    
+                    listRows
                 }
                 .scrollIndicators(.hidden)
             }
@@ -53,7 +44,22 @@ struct SpotifyCoreView: View {
     private func getData() async {
         do {
             currentUser = try await DatabaseHelper().getUsers().first
-            products = try await Array(DatabaseHelper().getProducts().prefix(8))
+            let allProducts = try await DatabaseHelper().getProducts()
+            products = Array(allProducts.prefix(8))
+            
+            var rows: [ProductRow] = []
+            var seen = Set<String>()
+            let allBrands = allProducts
+                .dropFirst()
+                .prefix(8)
+                .compactMap { $0.brand }
+                .filter { seen.insert($0).inserted }
+            
+            for brand in allBrands {
+//                let products = allProducts.filter { $0.brand == brand }
+                rows.append(ProductRow(title: brand.capitalized, products: products))
+            }
+            productRows = rows
         } catch {
             print(error.localizedDescription)
         }
@@ -94,21 +100,26 @@ extension SpotifyCoreView {
             .scrollIndicators(.hidden)
         }
         .padding(.leading, 16)
+        .padding(.vertical, 8)
     }
     
     private var recentsSection: some View {
         LazyVGrid(columns: gridColumns) {
             ForEach(products) { product in
                 SpotifyRecentsCell(urlString: product.images[0], title: product.title)
+                    .asButton(.press) {
+                        
+                    }
             }
         }
         .padding(.horizontal, 16)
+        .padding(.top, 8)
     }
     
     private func newReleaseSection(product: Product) -> some View {
         SpotifyNewReleaseCell(
             headline: product.brand ?? "",
-            imageUrlString: product.thumbnail,
+            imageUrlString: product.images[0],
             type: product.category.rawValue.capitalized,
             title: product.title,
             subtitle: product.description) {
@@ -119,7 +130,37 @@ extension SpotifyCoreView {
                 
             }
             .padding(.horizontal, 16)
+    }
+    
+    private var listRows: some View {
+        ForEach(productRows) { productRow in
+            LazyVStack(spacing: 14) {
+                Text(productRow.title)
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .foregroundStyle(.spotifyWhite)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.horizontal, 16)
+                    .padding(.top, 20)
 
+                ScrollView(.horizontal) {
+                    HStack(alignment: .top, spacing: 16.0) {
+                        ForEach(productRow.products) { product in
+                            ImageTitleRowCell(
+                                imageName: product.images[0],
+                                imageSize: 148,
+                                title: product.title
+                            )
+                            .asButton(.press) {
+                                
+                            }
+                        }
+                    }
+                    .padding(.horizontal, 16)
+                }
+                .scrollIndicators(.hidden)
+            }
+        }
     }
 }
 

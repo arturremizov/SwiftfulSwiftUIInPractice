@@ -30,36 +30,8 @@ enum ProductCategory: String, Codable {
     case groceries = "groceries"
 }
 
-//struct Welcome: Codable {
-//    let products: [Product]
-//    let total, skip, limit: Int
-//}
-//
-//// MARK: - Product
-//struct Product: Codable {
-//    let id: Int
-//    let title, description: String
-//    let category: Category
-//    let price, discountPercentage, rating: Double
-//    let stock: Int
-//    let tags: [String]
-//    let brand: String?
-//    let sku: String
-//    let weight: Int
-//    let dimensions: Dimensions
-//    let warrantyInformation, shippingInformation: String
-//    let availabilityStatus: AvailabilityStatus
-//    let reviews: [Review]
-//    let returnPolicy: ReturnPolicy
-//    let minimumOrderQuantity: Int
-//    let meta: Meta
-//    let images: [String]
-//    let thumbnail: String
-//}
-//
-//enum AvailabilityStatus: String, Codable {
-//    case inStock = "In Stock"
-//    case lowStock = "Low Stock"
-//}
-
-
+struct ProductRow: Identifiable {
+    let id: String = UUID().uuidString
+    let title: String
+    let products: [Product]
+}
