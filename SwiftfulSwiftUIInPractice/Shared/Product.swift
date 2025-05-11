@@ -35,3 +35,22 @@ struct ProductRow: Identifiable {
     let title: String
     let products: [Product]
 }
+
+
+extension Product {
+    static var mock: Product {
+        Product(
+            id: 1,
+            title: "Example product title",
+            description: "This is some mock product description that goes here.",
+            category: .beauty,
+            price: 999,
+            discountPercentage: 15,
+            rating: 4.5,
+            stock: 50,
+            brand: "Apple",
+            thumbnail: Constants.randomImageUrl,
+            images: [Constants.randomImageUrl, Constants.randomImageUrl, Constants.randomImageUrl]
+        )
+    }
+}
